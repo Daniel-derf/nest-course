@@ -36,18 +36,18 @@ export class CoursesService {
   }
 
   updateCourse(id: number, updateCourseDto: UpdateCourseDto) {
-    const courseIndex = this.courses.findIndex((course) => course.id === id);
+    const courseIdx = this.courses.findIndex((course) => course.id === id);
 
-    if (courseIndex === -1) {
+    if (courseIdx === -1) {
       throw new Error(`Course with ID ${id} not found`);
     }
 
-    this.courses[courseIndex] = {
-      ...this.courses[courseIndex],
+    this.courses[courseIdx] = {
+      ...this.courses[courseIdx],
       ...updateCourseDto,
     };
 
-    return this.courses[courseIndex];
+    return this.courses[courseIdx];
   }
 
   deleteCourse(id: number) {

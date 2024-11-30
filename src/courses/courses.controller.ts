@@ -10,9 +10,12 @@ import {
   Post,
   Res,
 } from '@nestjs/common';
+import { CourseService } from 'src/course/course.service';
 
 @Controller('courses')
 export class CoursesController {
+  constructor(private readonly courseService: CourseService) {}
+
   @Get()
   findAll(@Res() response) {
     return response.status(200).json({ message: 'Listagem de cursos' });

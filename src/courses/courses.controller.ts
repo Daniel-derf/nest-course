@@ -12,7 +12,7 @@ import {
 export class CoursesController {
   @Get()
   findAll(@Res() response) {
-    return response.status(200).send('Listagem de Recursos');
+    return response.status(200).json({ message: 'Listagem de cursos' });
   }
 
   @Get(':id')

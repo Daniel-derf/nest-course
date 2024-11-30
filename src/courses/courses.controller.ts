@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpCode,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -27,7 +28,6 @@ export class CoursesController {
     return `Curso ${id} ${name}`;
   }
 
-  @HttpCode(204)
   @Post()
   create(@Body() body) {
     return body;
@@ -38,6 +38,7 @@ export class CoursesController {
     return `Update course with ID ${id}`;
   }
 
+  @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   delete(@Param('id') id: string) {
     return `Delete course with ID ${id}`;

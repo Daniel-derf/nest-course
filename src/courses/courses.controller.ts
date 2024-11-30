@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   Param,
@@ -35,5 +36,10 @@ export class CoursesController {
   @Patch(':id')
   update(@Param('id') id: string) {
     return `Update course with ID ${id}`;
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return `Delete course with ID ${id}`;
   }
 }

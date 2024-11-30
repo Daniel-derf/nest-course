@@ -11,6 +11,7 @@ import {
   Res,
 } from '@nestjs/common';
 import { CoursesService } from 'src/courses/courses.service';
+import { UpdateCourseDto } from './dto/updateCourse.dto';
 
 @Controller('courses')
 export class CoursesController {
@@ -18,32 +19,31 @@ export class CoursesController {
 
   @Get()
   findAll(@Res() response) {
-    return response.status(200).json({ message: 'Listagem de cursos' });
+    const data = this.courseService.getCourses();
+    return response.status(200).json({ data });
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return `Curso ${id}`;
-  }
-
-  @Get(':id/:name')
-  findOneName(@Param('id') id: string, @Param('name') name: string) {
-    return `Curso ${id} ${name}`;
+    const data = this.courseService.getOneCourse(+id);
+    return { data };
   }
 
   @Post()
   create(@Body() body) {
-    return body;
+    const createdCourse = this.courseService.createCourse(body);
+    return { data: createdCourse };
   }
 
   @Patch(':id')
-  update(@Param('id') id: string) {
-    return `Update course with ID ${id}`;
+  update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
+    return this.courseService.updateCourse(+id, updateCourseDto);
   }
 
-  @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   delete(@Param('id') id: string) {
-    return `Delete course with ID ${id}`;
+    const removedCourse = this.courseService.deleteCourse(+id);
+
+    return removedCourse;
   }
 }

@@ -4,6 +4,7 @@ import {
   Get,
   HttpCode,
   Param,
+  Patch,
   Post,
   Res,
 } from '@nestjs/common';
@@ -29,5 +30,10 @@ export class CoursesController {
   @Post()
   create(@Body() body) {
     return body;
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string) {
+    return `Update course with ID ${id}`;
   }
 }

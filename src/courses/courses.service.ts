@@ -22,7 +22,7 @@ export class CoursesService {
     return this.courses.find((c) => c.id === id);
   }
 
-  createCourse({ name, description, tags }): Course {
+  createCourse({ name, description, tags }: CreateCourseDto) {
     const newCourse: CreateCourseDto = {
       id: this.courses[this.courses.length - 1].id + 1,
       name,
